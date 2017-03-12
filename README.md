@@ -13,6 +13,9 @@ neueccさんが作成されているReactive Extensions for Unityなライブラ
 https://www.assetstore.unity3d.com/jp/#!/content/32416<br>
 トゥイーン系のアセットはいくつかありますが、その中でも最もパフォーマンスが良いアセットです。<br>
 軽快な移動処理を可読性良く記述することができます。
+* DOTween Pro（無料版）
+https://www.assetstore.unity3d.com/jp/#!/content/27676<br>
+上記アセットの無料版です。無料版のアセットの機能のみで当プロジェクトは作成しているのでこちらのアセットでも動作可能です。<br>
 
 ## 動作サンプル
 <img src="https://github.com/yunomigithub/StageSelect/blob/image/readme.gif">
