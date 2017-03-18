@@ -4,8 +4,6 @@
 //  </copyright>
 //  <author>Yunomi</author>
 //  <email>yunomi@childhooddream.sakura.ne.jp</email>
-//  <created date>12/03/2017</date>
-//  <update date>12/03/2017</date>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Common.Event
 {
@@ -20,13 +18,15 @@ namespace Common.Event
     #endregion
 
     /// <summary> 共通として使えるシーン移動を受け付ける </summary>
-    public class SceneMoveEvent : MonoBehaviour
+    public class SceneMoveEvent : BaseTapEvent
     {
         [SerializeField]
         private string sceneName;
 
         private void Awake()
         {
+            this.InitializeNormalTapEvent();
+
             this.gameObject.GetComponent<Button>().OnPointerClickAsObservable().Subscribe(_ => {
                 ExecuteEvents.Execute<ICommonInterface>(BasePresenter.Instance.gameObject, null, (target, funcEventData) => target.MoveScene(this.sceneName));
             }).AddTo(this);

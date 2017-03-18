@@ -4,8 +4,6 @@
 //  </copyright>
 //  <author>Yunomi</author>
 //  <email>yunomi@childhooddream.sakura.ne.jp</email>
-//  <created date>12/03/2017</date>
-//  <update date>12/03/2017</date>
 // --------------------------------------------------------------------------------------------------------------------
 namespace StageSelect
 {
@@ -32,7 +30,7 @@ namespace StageSelect
         private ScrollRect scrollRect;
 
         [SerializeField]
-        private MainMenuButtonView mainMenuButtonPrefabView;
+        private AreaMenuButtonView areaMenuButtonPrefabView;
 
         [SerializeField]
         private Image tapLockImage;
@@ -43,44 +41,44 @@ namespace StageSelect
 
         private MstDataLoad mstDataLoad = new MstDataLoad();
 
-        private List<MainMenuButtonView> mainMenuButtonViewList = new List<MainMenuButtonView>();
+        private List<AreaMenuButtonView> areaMenuButtonViewList = new List<AreaMenuButtonView>();
 
         private bool isOpenAccordion;
 
         /// <summary>
-        /// メインのメニューボタンをタップした時の処理
+        /// エリアボタンをタップした時の処理
         /// </summary>
-        /// <param name="menuId">何番目のボタンを押したのか</param>
-        public void ClickMainMenuButton(int menuId)
+        /// <param name="areaId">何番目のボタンを押したのか</param>
+        public void ClickAreaMenuButton(int areaId)
         {
             if (!this.isOpenAccordion) {
-                this.mainMenuButtonViewList[menuId].OpenMenuButton(StageSelectConst.AccordionSpeed, menuId);
-                this.scrollRect.vertical = false;
+                this.areaMenuButtonViewList[areaId].OpenAreaMenuButton(areaId);
+                this.scrollRect.enabled = false;
                 this.isOpenAccordion = true;
                 this.tapLockImage.enabled = true;
             }
             else {
-                this.mainMenuButtonViewList[menuId].CloseMenuButton(StageSelectConst.AccordionSpeed, menuId);
+                this.areaMenuButtonViewList[areaId].CloseAreaMenuButton(areaId);
                 this.isOpenAccordion = false;
-                this.scrollRect.vertical = true;
+                this.scrollRect.enabled = true;
                 this.tapLockImage.enabled = false;
             }
         }
 
-        /// <summary> サブメニューを押した時（ステージを選択した時）の処理 </summary>
-        public void ClickMainMenuButton(int menuId, int subMenuId)
+        /// <summary> ステージボタンを押した時の処理 </summary>
+        public void ClickStageMenuButton(int areaId, int stageId)
         {
             // 適切なデータをバトルシーンへ渡す。当サンプルでは次のシーンがないため省略。
-            Debug.Log(menuId + "/" + subMenuId);
+            Debug.Log(areaId + "/" + stageId);
         }
 
         private void Start()
         {
-            this.stageMstModel = this.mstDataLoad.InitializeStageMstModel();
-            this.areaMstModel = this.mstDataLoad.InitializeAreaMstModel();
+            this.stageMstModel = this.mstDataLoad.LoadStageMstModel();
+            this.areaMstModel = this.mstDataLoad.LoadAreaMstModel();
 
             for (var i = 0; i < this.areaMstModel.Count; i++) {
-                this.mainMenuButtonViewList.Add(this.mainMenuButtonPrefabView.CreateMainMenuButton(i, this.areaMstModel[i], this.stageMstModel, this.scrollContentParent));
+                this.areaMenuButtonViewList.Add(this.areaMenuButtonPrefabView.CreateAreaMenuButton(i, this.areaMstModel[i], this.stageMstModel, this.scrollContentParent));
             }
         }
     }

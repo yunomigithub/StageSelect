@@ -11,9 +11,16 @@ namespace StageSelect.Model
 {
     public class StageMstModel
     {
+        /// <summary> エリアID </summary>
         public int AreaMstId { get; set; }
+
+        /// <summary> ステージレベル </summary>
         public int StageLevel { get; set; }
+
+        /// <summary> ステージ名 </summary>
         public string StageNameText { get; set; }
+
+        /// <summary> 消費スタミナ </summary>
         public string StaminaNumberText { get; set; }
     }
 }

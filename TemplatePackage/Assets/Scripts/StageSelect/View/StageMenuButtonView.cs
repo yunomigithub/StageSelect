@@ -1,11 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SubMenuButtonView.cs">
+//  <copyright file="StageMenuButtonView.cs">
 //      Copyright ©Yunomi. All rights reserved.
 //  </copyright>
 //  <author>Yunomi</author>
 //  <email>yunomi@childhooddream.sakura.ne.jp</email>
-//  <created date>10/03/2017</date>
-//  <update date>11/03/2017</date>
 // --------------------------------------------------------------------------------------------------------------------
 namespace StageSelect.View
 {
@@ -18,7 +16,7 @@ namespace StageSelect.View
     #endregion
 
     /// <summary> サブメニューボタンに関する制御 </summary>
-    public class SubMenuButtonView : MonoBehaviour
+    public class StageMenuButtonView : MonoBehaviour
     {
         [SerializeField]
         private Text stageNameText;
@@ -32,9 +30,9 @@ namespace StageSelect.View
         [SerializeField]
         private StarPartsView startPartsPrefabView;
 
-        public int AreaMstId { get; private set; }
+        public int AreaId { get; private set; }
 
-        public int StageMstId { get; private set; }
+        public int StageId { get; private set; }
 
         /// <summary> ステージ名の変更 </summary>
         public void ChangeStageNameText(string text)
@@ -54,17 +52,17 @@ namespace StageSelect.View
             this.startPartsPrefabView.CreateStarParts(stageLevel, this.startListObject);
         }
 
-        /// <summary> サブメニューボタンを生成する </summary>
-        public void CreateSubMenuButton(int areaMstId, int stageMstId, StageMstModel stageMstModel, GameObject parentObject)
+        /// <summary> ステージ選択メニューボタンを生成する </summary>
+        public void CreateStageMenuButton(int areaId, int stageId, StageMstModel stageMstModel, GameObject parentObject)
         {
-            GameObject subMenuButtonViewObject = Instantiate(this.gameObject, parentObject.transform, false);
-            var subMenuButtonView = subMenuButtonViewObject.GetComponent<SubMenuButtonView>();
+            GameObject stageMenuButtonViewObject = Instantiate(this.gameObject, parentObject.transform, false);
+            var stageMenuButtonView = stageMenuButtonViewObject.GetComponent<StageMenuButtonView>();
 
-            subMenuButtonView.ChangeStaminaNumberText(stageMstModel.StaminaNumberText);
-            subMenuButtonView.ChangeStageNameText(stageMstModel.StageNameText);
-            subMenuButtonView.CreateStartParts(stageMstModel.StageLevel);
-            subMenuButtonView.AreaMstId = areaMstId;
-            subMenuButtonView.StageMstId = stageMstId;
+            stageMenuButtonView.ChangeStaminaNumberText(stageMstModel.StaminaNumberText);
+            stageMenuButtonView.ChangeStageNameText(stageMstModel.StageNameText);
+            stageMenuButtonView.CreateStartParts(stageMstModel.StageLevel);
+            stageMenuButtonView.AreaId = areaId;
+            stageMenuButtonView.StageId = stageId;
         }
     }
 }

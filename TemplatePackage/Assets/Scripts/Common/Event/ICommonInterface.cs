@@ -4,8 +4,6 @@
 //  </copyright>
 //  <author>Yunomi</author>
 //  <email>yunomi@childhooddream.sakura.ne.jp</email>
-//  <created date>12/03/2017</date>
-//  <update date>12/03/2017</date>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Common.Event
 {

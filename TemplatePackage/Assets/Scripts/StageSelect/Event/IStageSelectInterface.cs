@@ -15,9 +15,10 @@ namespace StageSelect.Event
 
     #endregion
 
+    /// <summary> ステージ選択で使用するタッチ関連のイベントリスト </summary>
     public interface IStageSelectInterface : IEventSystemHandler
     {
-        void ClickMainMenuButton(int menuId);
-        void ClickMainMenuButton(int menuId, int subMenuId);
+        void ClickAreaMenuButton(int areaId);
+        void ClickStageMenuButton(int areaId, int stageId);
     }
 }

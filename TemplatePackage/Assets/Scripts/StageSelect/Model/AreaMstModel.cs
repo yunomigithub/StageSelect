@@ -11,6 +11,7 @@ namespace StageSelect.Model
 {
     public class AreaMstModel
     {
-        public string BattleAreaName { get; set; }
+        /// <summary> エリア名 </summary>
+        public string AreaName { get; set; }
     }
 }

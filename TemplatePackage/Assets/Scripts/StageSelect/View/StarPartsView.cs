@@ -4,8 +4,6 @@
 //  </copyright>
 //  <author>Yunomi</author>
 //  <email>yunomi@childhooddream.sakura.ne.jp</email>
-//  <created date>10/03/2017</date>
-//  <update date>11/03/2017</date>
 // --------------------------------------------------------------------------------------------------------------------
 namespace StageSelect.View
 {
@@ -33,11 +31,10 @@ namespace StageSelect.View
         public void CreateStarParts(int stageLevel, GameObject parentObject)
         {
             for (var i = 0; i < StageSelectConst.MaxStageLevel; i++) {
-                GameObject startPartsObject = Object.Instantiate(this.gameObject, parentObject.transform, false);
+                GameObject startPartsObject = Instantiate(this.gameObject, parentObject.transform, false);
                 var startPartsView = startPartsObject.GetComponent<StarPartsView>();
 
-                if (i < stageLevel)
-                {
+                if (i < stageLevel) {
                     startPartsView.ChangeStarImageToOn();
                 }
             }

@@ -4,8 +4,6 @@
 //  </copyright>
 //  <author>Yunomi</author>
 //  <email>yunomi@childhooddream.sakura.ne.jp</email>
-//  <created date>10/03/2017</date>
-//  <update date>11/03/2017</date>
 // --------------------------------------------------------------------------------------------------------------------
 namespace StageSelect
 {
@@ -20,19 +18,19 @@ namespace StageSelect
     public class MstDataLoad
     {
         /// <summary> エリア情報を読み込む </summary>
-        public List<AreaMstModel> InitializeAreaMstModel()
+        public List<AreaMstModel> LoadAreaMstModel()
         {
             var areaMstModelList = new List<AreaMstModel>();
 
             // データの読み込み部分。サンプルなので適当に値を仮で代入
-            var areaMstModel1 = new AreaMstModel { BattleAreaName = "hoge1" };
-            var areaMstModel2 = new AreaMstModel { BattleAreaName = "hoge2" };
-            var areaMstModel3 = new AreaMstModel { BattleAreaName = "hoge3" };
-            var areaMstModel4 = new AreaMstModel { BattleAreaName = "hoge4" };
-            var areaMstModel5 = new AreaMstModel { BattleAreaName = "hoge5" };
-            var areaMstModel6 = new AreaMstModel { BattleAreaName = "hoge6" };
-            var areaMstModel7 = new AreaMstModel { BattleAreaName = "hoge7" };
-            var areaMstModel8 = new AreaMstModel { BattleAreaName = "hoge8" };
+            var areaMstModel1 = new AreaMstModel { AreaName = "hoge1" };
+            var areaMstModel2 = new AreaMstModel { AreaName = "hoge2" };
+            var areaMstModel3 = new AreaMstModel { AreaName = "hoge3" };
+            var areaMstModel4 = new AreaMstModel { AreaName = "hoge4" };
+            var areaMstModel5 = new AreaMstModel { AreaName = "hoge5" };
+            var areaMstModel6 = new AreaMstModel { AreaName = "hoge6" };
+            var areaMstModel7 = new AreaMstModel { AreaName = "hoge7" };
+            var areaMstModel8 = new AreaMstModel { AreaName = "hoge8" };
 
             areaMstModelList.Add(areaMstModel1);
             areaMstModelList.Add(areaMstModel2);
@@ -47,7 +45,7 @@ namespace StageSelect
         }
 
         /// <summary> ステージ情報を読み込む </summary>
-        public List<StageMstModel> InitializeStageMstModel()
+        public List<StageMstModel> LoadStageMstModel()
         {
             var stageMstModelList = new List<StageMstModel>();
 
