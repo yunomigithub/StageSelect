@@ -31,7 +31,6 @@ namespace StageSelect.View
         private StarPartsView startPartsPrefabView;
 
         public int AreaId { get; private set; }
-
         public int StageId { get; private set; }
 
         /// <summary> ステージ名の変更 </summary>
@@ -46,23 +45,31 @@ namespace StageSelect.View
             this.staminaNumberText.text = text;
         }
 
-        /// <summary> 難易度の星を表示する </summary>
-        public void CreateStartParts(int stageLevel)
+        /// <summary> ステージ選択メニューボタンを生成する </summary>
+        public GameObject CreateStageMenuButton(GameObject parentObject)
         {
-            this.startPartsPrefabView.CreateStarParts(stageLevel, this.startListObject);
+            return Instantiate(this.gameObject, parentObject.transform, false);
         }
 
-        /// <summary> ステージ選択メニューボタンを生成する </summary>
-        public void CreateStageMenuButton(int areaId, int stageId, StageMstModel stageMstModel, GameObject parentObject)
+        /// <summary> 難易度の星を生成する </summary>
+        public void CreateStartParts(int stageLevel)
         {
-            GameObject stageMenuButtonViewObject = Instantiate(this.gameObject, parentObject.transform, false);
-            var stageMenuButtonView = stageMenuButtonViewObject.GetComponent<StageMenuButtonView>();
+            for (var i = 0; i < StageSelectConst.MaxStageLevel; i++) {
+                GameObject starPartsObject = this.startPartsPrefabView.CreateStarParts(this.startListObject);
+                if (i < stageLevel) {
+                    starPartsObject.GetComponent<StarPartsView>().ChangeStarImageToOn();
+                }
+            }
+        }
 
-            stageMenuButtonView.ChangeStaminaNumberText(stageMstModel.StaminaNumberText);
-            stageMenuButtonView.ChangeStageNameText(stageMstModel.StageNameText);
-            stageMenuButtonView.CreateStartParts(stageMstModel.StageLevel);
-            stageMenuButtonView.AreaId = areaId;
-            stageMenuButtonView.StageId = stageId;
+        /// <summary> 初期化 </summary>
+        public void InitializeStageMenuButton(int areaId, int stageId, StageMstModel stageMstModel)
+        {
+            this.ChangeStaminaNumberText(stageMstModel.StaminaNumberText);
+            this.ChangeStageNameText(stageMstModel.StageNameText);
+            this.CreateStartParts(stageMstModel.StageLevel);
+            this.AreaId = areaId;
+            this.StageId = stageId;
         }
     }
 }

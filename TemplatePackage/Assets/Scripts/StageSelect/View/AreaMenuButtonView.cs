@@ -56,7 +56,8 @@ namespace StageSelect.View
             // UI上では配列の兼ね合いでIDは0番から。ModelのIDはデータベース(マスタ)の兼ね合いで1番からになっているので調整
             // マスタ上でエリアIDが同じ数だけステージがあるというテーブル設計を想定しているのでその数だけステージボタンを生成する
             foreach (var stageModel in stageMstModelList.Where(model => model.AreaMstId == areaId + 1).ToList()) {
-                this.stageMenuButtonPrefabView.CreateStageMenuButton(areaId, stageId, stageModel, this.stageMenuParentObject);
+                GameObject stageMenuButtonObject = this.stageMenuButtonPrefabView.CreateStageMenuButton(this.stageMenuParentObject);
+                stageMenuButtonObject.GetComponent<StageMenuButtonView>().InitializeStageMenuButton(areaId, stageId, stageModel);
                 stageId++;
             }
         }
@@ -80,15 +81,17 @@ namespace StageSelect.View
         }
 
         /// <summary> エリアボタンを生成する </summary>
-        public AreaMenuButtonView CreateAreaMenuButton(int areaId, AreaMstModel areaMstModel, List<StageMstModel> stageMstModelList, GameObject parentObject)
+        public GameObject CreateAreaMenuButton(GameObject parentObject)
         {
-            GameObject areaMenuButtonViewObject = Instantiate(this.gameObject, parentObject.transform, false);
-            var areaMenuButtonView = areaMenuButtonViewObject.GetComponent<AreaMenuButtonView>();
-            areaMenuButtonView.ChangeAreaMenuButtonText(areaMstModel.AreaName);
-            areaMenuButtonView.CreateStageMenuButton(areaId, stageMstModelList);
-            areaMenuButtonView.AreaMenuButtonNo = areaId;
+            return Instantiate(this.gameObject, parentObject.transform, false);
+        }
 
-            return areaMenuButtonView;
+        /// <summary> 初期化 </summary>
+        public void InitializeAreaMenuButton(int areaId, AreaMstModel areaMstModel, List<StageMstModel> stageMstModelList)
+        {
+            this.ChangeAreaMenuButtonText(areaMstModel.AreaName);
+            this.CreateStageMenuButton(areaId, stageMstModelList);
+            this.AreaMenuButtonNo = areaId;
         }
 
         /// <summary> エリアボタンを開く </summary>

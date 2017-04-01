@@ -27,17 +27,10 @@ namespace StageSelect.View
             this.starImage.enabled = true;
         }
 
-        /// <summary> 難易度をあらわす星を表示する </summary>
-        public void CreateStarParts(int stageLevel, GameObject parentObject)
+        /// <summary> 難易度をあらわす星を生成する </summary>
+        public GameObject CreateStarParts(GameObject parentObject)
         {
-            for (var i = 0; i < StageSelectConst.MaxStageLevel; i++) {
-                GameObject startPartsObject = Instantiate(this.gameObject, parentObject.transform, false);
-                var startPartsView = startPartsObject.GetComponent<StarPartsView>();
-
-                if (i < stageLevel) {
-                    startPartsView.ChangeStarImageToOn();
-                }
-            }
+            return Instantiate(this.gameObject, parentObject.transform, false);
         }
     }
 }

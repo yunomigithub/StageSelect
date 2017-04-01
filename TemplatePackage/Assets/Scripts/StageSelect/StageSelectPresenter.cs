@@ -78,7 +78,9 @@ namespace StageSelect
             this.areaMstModel = this.mstDataLoad.LoadAreaMstModel();
 
             for (var i = 0; i < this.areaMstModel.Count; i++) {
-                this.areaMenuButtonViewList.Add(this.areaMenuButtonPrefabView.CreateAreaMenuButton(i, this.areaMstModel[i], this.stageMstModel, this.scrollContentParent));
+                GameObject areaMenuButtonObject = this.areaMenuButtonPrefabView.CreateAreaMenuButton(this.scrollContentParent);
+                areaMenuButtonObject.GetComponent<AreaMenuButtonView>().InitializeAreaMenuButton(i, this.areaMstModel[i], this.stageMstModel);
+                this.areaMenuButtonViewList.Add(areaMenuButtonObject.GetComponent<AreaMenuButtonView>());
             }
         }
     }
